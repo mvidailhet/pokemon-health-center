@@ -1,3 +1,6 @@
+$pokemon-health-bar-height: 20px;
+$pokemon-health-bar-border-radius: $pokemon-health-bar-height / 2;
+
 .pokemon-cards {
   margin-top: 10px;
   display: flex;
@@ -18,7 +21,7 @@
   border-radius: 10px 10px 0 0;
   background-size: cover;
   background-position: center;
-  background-image: url("http://placekitten.com/200/300");
+  background-image: url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png");
   height: 200px;
   width: 100%;
 }
@@ -38,4 +41,21 @@
   text-align: center;
   background-color: lightblue;
   width: 100%;
+  cursor: pointer;
+}
+
+.pokemon-health-bar-container {
+  height: $pokemon-health-bar-height;
+  width: 100%;
+  background-color: #e0e0de;
+  border-radius: $pokemon-health-bar-border-radius;
+  margin: 10px 0px;
+}
+
+.pokemon-health-bar {
+  height: 100%;
+  background-color: #4caf50;
+  border-radius: $pokemon-health-bar-border-radius;
+  transition: width 0.5s ease-in-out;
+  width: 50%;
 }
