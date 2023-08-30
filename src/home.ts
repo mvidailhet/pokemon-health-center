@@ -10,5 +10,3 @@ const pokemon: Pokemon = {
 }
 
 console.log(pokemon);
-
-console.log('toto');
