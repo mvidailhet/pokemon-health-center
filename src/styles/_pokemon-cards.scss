@@ -50,6 +50,6 @@ $pokemon-health-bar-border-radius: $pokemon-health-bar-height / 2;
   height: 100%;
   background-color: #4caf50;
   border-radius: $pokemon-health-bar-border-radius;
-  transition: width 0.5s ease-in-out;
+  transition: width 0.5s ease-in-out, background-color 0.5s ease-in-out;
   width: 50%;
 }
