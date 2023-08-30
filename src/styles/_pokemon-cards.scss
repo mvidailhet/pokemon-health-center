@@ -10,8 +10,8 @@ $pokemon-health-bar-border-radius: $pokemon-health-bar-height / 2;
 
 .pokemon-card {
   border-radius: 10px;
-  width: 200px;
-  margin: 20px;
+  width: 180px;
+  margin: 16px;
   display: flex;
   flex-direction: column;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -22,7 +22,7 @@ $pokemon-health-bar-border-radius: $pokemon-health-bar-height / 2;
   background-size: cover;
   background-position: center;
   background-image: url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png");
-  height: 200px;
+  height: 180px;
   width: 100%;
 }
 

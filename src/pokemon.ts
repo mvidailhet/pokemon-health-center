@@ -14,8 +14,10 @@ export class Pokemon implements IPokemon {
   constructor(
     readonly id: number,
     readonly gender: PokemonGender,
-    readonly name: string
+    readonly name: string,
+    healthPercent: number
   ) {
+    this.life.current = healthPercent;
     this.createHTMLElement();
   }
 
