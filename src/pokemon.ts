@@ -11,6 +11,8 @@ export class Pokemon implements IPokemon {
 
   cardElts?: BodyElts;
 
+  cryAudio = new Audio(`https://pokemoncries.com/cries-old/${this.id}.mp3`);
+
   constructor(
     readonly id: number,
     readonly gender: PokemonGender,
@@ -34,10 +36,20 @@ export class Pokemon implements IPokemon {
     );
   }
 
-  heal() {
+  heal(cryAfter = true) {
     if (!this.cardElts) return;
+    if (this.life.current === this.life.total) return;
     this.life.current = this.life.total;
     this.changeHealElementstoFull(this.life.current);
+    if (cryAfter) { 
+      setTimeout(() => {
+        this.cry(); 
+      }, 500);
+    }
+  }
+
+  cry () {
+    this.cryAudio.play();
   }
 
   private changeHealElementstoFull(newHealthValue: number) {

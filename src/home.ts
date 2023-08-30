@@ -9,10 +9,14 @@ const pokemons = [
   new Pokemon(66, 'male', "Machop", 90),
 ]
 
+// https://pokemoncries.com/cries-old/1.mp3
+
+
+
 const healAllButton = document.querySelector('#heal-all-button')!;
 
 function healAllPokemons() {
-  pokemons.forEach(pokemon => pokemon.heal());
+  pokemons.forEach(pokemon => pokemon.heal(false));
 }
 
 healAllButton.addEventListener("click", healAllPokemons, true);
