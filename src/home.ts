@@ -7,15 +7,14 @@ const pokemons = [
   new Pokemon(7, 'male', "Carapuce", 50),
   new Pokemon(35, 'male', "Melofee", 70),
   new Pokemon(66, 'male', "Machop", 90),
-]
-
-// https://pokemoncries.com/cries-old/1.mp3
-
-
+];
 
 const healAllButton = document.querySelector('#heal-all-button')!;
 
+const healSound = new Audio("https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3");
+
 function healAllPokemons() {
+  healSound.play();
   pokemons.forEach(pokemon => pokemon.heal(false));
 }
 

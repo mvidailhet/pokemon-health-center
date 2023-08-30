@@ -1,5 +1,6 @@
 $pokemon-health-bar-height: 20px;
 $pokemon-health-bar-border-radius: $pokemon-health-bar-height / 2;
+$pokemon-heal-duration: 1000ms;
 
 .pokemon-cards {
   margin-top: 10px;
@@ -50,6 +51,6 @@ $pokemon-health-bar-border-radius: $pokemon-health-bar-height / 2;
   height: 100%;
   background-color: #4caf50;
   border-radius: $pokemon-health-bar-border-radius;
-  transition: width 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  transition: width $pokemon-heal-duration ease-in-out, background-color $pokemon-heal-duration ease-in-out;
   width: 50%;
 }

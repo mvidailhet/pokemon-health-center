@@ -44,7 +44,7 @@ export class Pokemon implements IPokemon {
     if (cryAfter) { 
       setTimeout(() => {
         this.cry(); 
-      }, 500);
+      }, 1000);
     }
   }
 
