@@ -9,3 +9,11 @@ const pokemons = [
   new Pokemon(66, 'male', "Machop", 90),
 ]
 
+const healAllButton = document.querySelector('#heal-all-button')!;
+
+function healAllPokemons() {
+  pokemons.forEach(pokemon => pokemon.heal());
+}
+
+healAllButton.addEventListener("click", healAllPokemons, true);
+
