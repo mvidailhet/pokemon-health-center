@@ -1,5 +1,5 @@
-import { Utils } from "./utils.js";
-import { ValueWithTotal } from "./models/pokemon.js";
+import { DOMUtils } from "./dom-utils.js";
+import { ValueWithTotal } from "../models/pokemon.js";
 
 export interface HealthElts {
   healthValueTextElt: HTMLElement;
@@ -22,12 +22,12 @@ export class PokemonDomUtils {
     cardElt: HTMLElement,
     pokemonImgUrl: string
   ) {
-    const header = Utils.createNewElement(
+    const header = DOMUtils.createHTMLElement(
       "div",
       "pokemon-card-header",
       cardElt
     );
-    const img = Utils.createNewElement("div", "pokemon-card-img", header);
+    const img = DOMUtils.createHTMLElement("div", "pokemon-card-img", header);
     img.style.backgroundImage = `url("${pokemonImgUrl}")`;
   }
 
@@ -37,8 +37,8 @@ export class PokemonDomUtils {
     pokemonLife: ValueWithTotal,
     healFunction: () => void
   ): BodyElts {
-    const bodyElt = Utils.createNewElement("div", "pokemon-card-body", cardElt);
-    Utils.createNewElement("h2", "pokemon-card-title", bodyElt, pokemonName);
+    const bodyElt = DOMUtils.createHTMLElement("div", "pokemon-card-body", cardElt);
+    DOMUtils.createHTMLElement("h2", "pokemon-card-title", bodyElt, pokemonName);
     const healthElts = PokemonDomUtils.createPokemonHealthInfo(
       bodyElt,
       pokemonLife
@@ -54,24 +54,24 @@ export class PokemonDomUtils {
     bodyElt: HTMLElement,
     pokemonLife: ValueWithTotal
   ): HealthElts {
-    const healthTextElt = Utils.createNewElement(
+    const healthTextElt = DOMUtils.createHTMLElement(
       "p",
       "pokemon-card-text",
       bodyElt,
       `HP: `
     );
-    const healthValueTextElt = Utils.createNewElement(
+    const healthValueTextElt = DOMUtils.createHTMLElement(
       "span",
       "pokemon-card-current-health-text",
       healthTextElt,
       pokemonLife.current.toString()
     );
-    const healthbarContainer = Utils.createNewElement(
+    const healthbarContainer = DOMUtils.createHTMLElement(
       "div",
       "pokemon-health-bar-container",
       bodyElt
     );
-    const healthBarElt = Utils.createNewElement(
+    const healthBarElt = DOMUtils.createHTMLElement(
       "div",
       "pokemon-health-bar",
       healthbarContainer
@@ -98,7 +98,7 @@ export class PokemonDomUtils {
   }
 
   private static createPokemonHealButton(bodyElt: HTMLElement, healFunction: () => void) {
-    const button = Utils.createNewElement(
+    const button = DOMUtils.createHTMLElement(
       "button",
       "button pokemon-card-button",
       bodyElt,
@@ -117,7 +117,7 @@ export class PokemonDomUtils {
     pokemonLife: ValueWithTotal,
     healFunction: () => void,
   ): BodyElts {
-    const cardElt = Utils.createNewElement("div", "pokemon-card", pokemonCards);
+    const cardElt = DOMUtils.createHTMLElement("div", "pokemon-card", pokemonCards);
     PokemonDomUtils.createPokemonCardHeader(cardElt, pokemonImgUrl);
     const bodyElts = PokemonDomUtils.createPokemonBody(
       cardElt,

@@ -1,6 +1,6 @@
 import { IPokemon, ValueWithTotal, PokemonGender } from "./models/pokemon.js";
-import { PokemonDomUtils, BodyElts } from "./pokemon-dom-utils.js";
-import { Utils } from "./utils.js";
+import { PokemonDomUtils, BodyElts } from "./dom-utils/pokemon-dom-utils.js";
+import { DOMUtils } from "./dom-utils/dom-utils.js";
 
 export class Pokemon implements IPokemon {
   imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${this.id}.png`;
@@ -60,10 +60,9 @@ export class Pokemon implements IPokemon {
     return Promise.resolve();
   }
 
-  // Inspiré de https://blog.webdevsimplified.com/2021-12/request-animation-frame/
   private animateHealthValue() {
     if (!this.cardElts) return;
-    return Utils.animateValue(
+    return DOMUtils.animateValue(
       this.cardElts.healthElts.healthValueTextElt,
       this.life.current,
       this.life.total,

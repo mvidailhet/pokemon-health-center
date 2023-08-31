@@ -1,5 +1,5 @@
-export class Utils {
-  static createNewElement(
+export class DOMUtils {
+  static createHTMLElement(
     eltName: string,
     classes: string,
     parent: HTMLElement,
