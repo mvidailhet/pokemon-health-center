@@ -33,6 +33,7 @@ export class Pokemon implements IPokemon {
       this.name,
       this.imgUrl,
       this.life,
+      this.gender,
       this.heal.bind(this)
     );
   }

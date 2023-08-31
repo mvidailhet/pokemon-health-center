@@ -2,6 +2,9 @@ $pokemon-health-bar-height: 20px;
 $pokemon-health-bar-border-radius: $pokemon-health-bar-height / 2;
 $pokemon-heal-duration: 1000ms;
 
+$pokemon-gender-male-color: #01a6ea;
+$pokemon-gender-female-color: #ffb1cb;
+
 .pokemon-cards {
   margin-top: 10px;
   display: flex;
@@ -51,6 +54,27 @@ $pokemon-heal-duration: 1000ms;
   height: 100%;
   background-color: #4caf50;
   border-radius: $pokemon-health-bar-border-radius;
-  transition: width $pokemon-heal-duration ease-in-out, background-color $pokemon-heal-duration ease-in-out;
+  transition: width $pokemon-heal-duration ease-in-out,
+    background-color $pokemon-heal-duration ease-in-out;
   width: 50%;
+}
+
+.pokemon-card-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+}
+
+.pokemon-gender {
+  margin-left: 8px;
+  width: 20px;
+  height: 20px;
+
+  &.pokemon-gender-male {
+    fill: $pokemon-gender-male-color;
+  }
+
+  &.pokemon-gender-female {
+    fill: $pokemon-gender-female-color;
+  }
 }
