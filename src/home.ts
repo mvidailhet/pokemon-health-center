@@ -1,3 +1,4 @@
+import { HealingMachine } from './healing-machine.js';
 import { Pokemon } from './pokemon.js'; 
 
 const pokemons = [
@@ -9,14 +10,4 @@ const pokemons = [
   new Pokemon(66, 'male', "Machop", 90),
 ];
 
-const healAllButton = document.querySelector('#heal-all-button')!;
-
-const healSound = new Audio("https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3");
-
-function healAllPokemons() {
-  healSound.play();
-  pokemons.forEach(pokemon => pokemon.heal(false));
-}
-
-healAllButton.addEventListener("click", healAllPokemons, true);
-
+const healingMachine = new HealingMachine(pokemons);
