@@ -21,15 +21,11 @@ export class Pokemon implements IPokemon {
     healthPercent: number
   ) {
     this.life.current = healthPercent;
-    this.createHTMLElement();
   }
 
-  createHTMLElement() {
-    const pokemonCards = document.querySelector(
-      ".pokemon-cards"
-    )! as HTMLElement;
+  createHTMLElement(parentElt: HTMLElement) {
     this.cardElts = PokemonDomUtils.createPokemonCard(
-      pokemonCards,
+      parentElt,
       this.name,
       this.imgUrl,
       this.life,
