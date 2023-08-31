@@ -1,5 +1,6 @@
 import { IPokemon, ValueWithTotal, PokemonGender } from "./models/pokemon.js";
 import { PokemonDomUtils, BodyElts } from "./pokemon-dom-utils.js";
+import { Utils } from "./utils.js";
 
 export class Pokemon implements IPokemon {
   imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${this.id}.png`;
@@ -36,26 +37,37 @@ export class Pokemon implements IPokemon {
     );
   }
 
-  heal(cryAfter = true) {
+  async heal(cryAfter = true) {
     if (!this.cardElts) return;
     if (this.life.current === this.life.total) return;
+    await this.changeHealElementstoFull();
     this.life.current = this.life.total;
-    this.changeHealElementstoFull(this.life.current);
-    if (cryAfter) { 
-      setTimeout(() => {
-        this.cry(); 
-      }, 1000);
-    }
+    if (cryAfter) this.cry();
   }
 
-  cry () {
+  cry() {
     this.cryAudio.play();
   }
 
-  private changeHealElementstoFull(newHealthValue: number) {
+  private async changeHealElementstoFull() {
     if (!this.cardElts) return;
     this.cardElts.healthElts.healthBarElt.style.width = "100%";
-    this.cardElts.healthElts.healthValueTextElt.textContent = newHealthValue.toString();
-    PokemonDomUtils.changeHealthBarColorFromHealthPercent(100, this.cardElts.healthElts.healthBarElt);
+    PokemonDomUtils.changeHealthBarColorFromHealthPercent(
+      100,
+      this.cardElts.healthElts.healthBarElt
+    );
+    await this.animateHealthValue();
+    return Promise.resolve();
+  }
+
+  // Inspiré de https://blog.webdevsimplified.com/2021-12/request-animation-frame/
+  private animateHealthValue() {
+    if (!this.cardElts) return;
+    return Utils.animateValue(
+      this.cardElts.healthElts.healthValueTextElt,
+      this.life.current,
+      this.life.total,
+      1000
+    );
   }
 }
