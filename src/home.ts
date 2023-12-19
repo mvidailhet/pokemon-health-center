@@ -74,4 +74,8 @@ function createCard(title: string, imageUrl: string) {
   cardBtn.classList.add("button");
   cardBtn.textContent = 'Heal now';
   cardBody.appendChild(cardBtn);
+
+  cardBtn.addEventListener('click', function() {
+    cardHealthBar.style.width = '100%';
+  });
 }
