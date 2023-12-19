@@ -1,5 +1,5 @@
 $pokemon-health-bar-height: 20px;
-$pokemon-health-bar-border-radius: $pokemon-health-bar-height / 2;
+$pokemon-health-bar-border-radius: calc($pokemon-health-bar-height / 2);
 
 .pokemon-cards {
   margin-top: 10px;
