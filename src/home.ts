@@ -28,11 +28,18 @@ const pokemons: Pokemon[] = [
   },
 ];
 
+let pokemonsHealthBars: HTMLDivElement[] = [];
+
 pokemons.forEach((pokemon) => {
-  createCard(pokemon.name, pokemon.id);
+  const healthBar = createCard(pokemon.name, pokemon.id);
+  if (healthBar === undefined) {
+    console.error('health bar element cannot be null');
+    return;
+  }
+  pokemonsHealthBars.push(healthBar);
 });
 
-function createCard(title: string, id: number) {
+function createCard(title: string, id: number): HTMLDivElement | undefined {
   if (cards === null) {
     console.error("cards element should not be null");
     return;
@@ -86,13 +93,14 @@ function createCard(title: string, id: number) {
       audio.play();
     }, 500);
   });
+
+  return cardHealthBar;
 }
 
 const healAllButton = document.querySelector('.heal-all-button');
 
 healAllButton?.addEventListener('click', function() {
-  const healthBars = document.querySelectorAll<HTMLElement>('.pokemon-health-bar');
-  healthBars.forEach((healthBar) => {
+  pokemonsHealthBars.forEach((healthBar) => {
     healthBar.style.width = '100%';
   });
 });
