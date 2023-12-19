@@ -1,5 +1,5 @@
 $pokemon-health-bar-height: 20px;
-$pokemon-health-bar-border-radius: $pokemon-health-bar-height / 2;
+$pokemon-health-bar-border-radius: calc($pokemon-health-bar-height / 2);
 $pokemon-heal-duration: 1000ms;
 
 $pokemon-gender-male-color: #01a6ea;
