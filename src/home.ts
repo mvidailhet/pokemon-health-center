@@ -81,5 +81,9 @@ function createCard(title: string, id: number) {
 
   cardBtn.addEventListener('click', function() {
     cardHealthBar.style.width = '100%';
+    setTimeout(() => {
+      const audio = new Audio(`https://pokemoncries.com/cries-old/${ id }.mp3`);
+      audio.play();
+    }, 500);
   });
 }
