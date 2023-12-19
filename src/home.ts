@@ -1,34 +1,38 @@
+type Pokemon = {
+  id: number;
+  name: string;
+};
+
 const cards = document.querySelector(".pokemon-cards");
 
-const pokemons = [
+const pokemons: Pokemon[] = [
   {
-    name: "Lucky",
-    picture: "https://placekitten.com/200/287",
+    id: 1,
+    name: "Bulbi",
   },
   {
-    name: "Symba",
-    picture: "https://placekitten.com/200/139",
+    id: 25,
+    name: "Pika",
   },
   {
-    name: "Léo",
-    picture: "https://placekitten.com/200/90",
+    id: 7,
+    name: "Cara",
   },
   {
-    name: "Milo",
-    picture: "https://placekitten.com/200/194",
+    id: 150,
+    name: "Thierry",
   },
   {
-    name: "Charly",
-    picture: "https://placekitten.com/200/179",
+    id: 149,
+    name: "Roger",
   },
 ];
 
-createCard(
-  "Charly",
-  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
-);
+pokemons.forEach((pokemon) => {
+  createCard(pokemon.name, pokemon.id);
+});
 
-function createCard(title: string, imageUrl: string) {
+function createCard(title: string, id: number) {
   if (cards === null) {
     console.error("cards element should not be null");
     return;
@@ -43,7 +47,7 @@ function createCard(title: string, imageUrl: string) {
   card.appendChild(cardHeader);
 
   const cardImg = document.createElement("div");
-  cardImg.style.backgroundImage = `url(${imageUrl})`;
+  cardImg.style.backgroundImage = `url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ id }.png")`;
   cardImg.classList.add("pokemon-card-img");
   cardHeader.appendChild(cardImg);
 
