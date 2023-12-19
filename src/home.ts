@@ -87,3 +87,12 @@ function createCard(title: string, id: number) {
     }, 500);
   });
 }
+
+const healAllButton = document.querySelector('.heal-all-button');
+
+healAllButton?.addEventListener('click', function() {
+  const healthBars = document.querySelectorAll<HTMLElement>('.pokemon-health-bar');
+  healthBars.forEach((healthBar) => {
+    healthBar.style.width = '100%';
+  });
+});
