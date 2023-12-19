@@ -3,7 +3,7 @@ type Pokemon = {
   name: string;
 };
 
-const cards = document.querySelector(".pokemon-cards");
+const cards = document.querySelector<HTMLElement>(".pokemon-cards");
 
 const pokemons: Pokemon[] = [
   {
@@ -28,7 +28,14 @@ const pokemons: Pokemon[] = [
   },
 ];
 
-let pokemonsHealthBars: HTMLDivElement[] = [];
+let pokemonsHealthBars: HTMLElement[] = [];
+
+function createHTMLElement(elementName: string, className: string, parentElt: HTMLElement) {
+  const element = document.createElement(elementName);
+  element.classList.add(className);
+  parentElt.appendChild(element);
+  return element;
+}
 
 pokemons.forEach((pokemon) => {
   const healthBar = createCard(pokemon.name, pokemon.id);
@@ -39,52 +46,34 @@ pokemons.forEach((pokemon) => {
   pokemonsHealthBars.push(healthBar);
 });
 
-function createCard(title: string, id: number): HTMLDivElement | undefined {
+function createCard(title: string, id: number): HTMLElement | undefined {
   if (cards === null) {
     console.error("cards element should not be null");
     return;
   }
 
-  const card = document.createElement("div");
-  card.classList.add("pokemon-card");
-  cards.appendChild(card);
+  const card = createHTMLElement("div", "pokemon-card", cards);
 
-  const cardHeader = document.createElement("div");
-  cardHeader.classList.add("pokemon-card-header");
-  card.appendChild(cardHeader);
+  const cardHeader = createHTMLElement("div", "pokemon-card-header", card);
 
-  const cardImg = document.createElement("div");
+  const cardImg = createHTMLElement("div", "pokemon-card-img", cardHeader);
   cardImg.style.backgroundImage = `url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${ id }.png")`;
-  cardImg.classList.add("pokemon-card-img");
-  cardHeader.appendChild(cardImg);
 
-  const cardBody = document.createElement("div");
-  cardBody.classList.add("pokemon-card-body");
-  card.appendChild(cardBody);
+  const cardBody = createHTMLElement("div", "pokemon-card-body", card);
 
-  const cardTitle = document.createElement("h2");
-  cardTitle.classList.add("pokemon-card-title");
+  const cardTitle = createHTMLElement("h2", "pokemon-card-title", cardBody);
   cardTitle.textContent = title;
-  cardBody.appendChild(cardTitle);
 
-  const cardText = document.createElement("p");
-  cardText.classList.add("pokemon-card-text");
+  const cardText = createHTMLElement("p", "pokemon-card-text", cardBody);
   cardText.textContent = 'HP: 100';
-  cardBody.appendChild(cardText);
 
-  const cardHealthBarContainer = document.createElement("div");
-  cardHealthBarContainer.classList.add("pokemon-health-bar-container");
-  cardBody.appendChild(cardHealthBarContainer);
+  const cardHealthBarContainer = createHTMLElement("div", "pokemon-health-bar-container", cardBody);
 
-  const cardHealthBar = document.createElement("div");
-  cardHealthBar.classList.add("pokemon-health-bar");
-  cardHealthBarContainer.appendChild(cardHealthBar);
+  const cardHealthBar = createHTMLElement("div", "pokemon-health-bar", cardHealthBarContainer);
 
-  const cardBtn = document.createElement("button");
-  cardBtn.classList.add("pokemon-card-button");
+  const cardBtn = createHTMLElement("button", "pokemon-card-button", cardBody);
   cardBtn.classList.add("button");
   cardBtn.textContent = 'Heal now';
-  cardBody.appendChild(cardBtn);
 
   cardBtn.addEventListener('click', function() {
     cardHealthBar.style.width = '100%';
